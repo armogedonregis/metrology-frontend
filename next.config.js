@@ -7,13 +7,16 @@ const nextConfig = {
       {
         hostname: 'localhost',
       },
+      {
+        hostname: 'metrologiya.org',
+      },
     ],
   },
   async rewrites() {
     return [
       {
         source: '/spb/:path*',
-        destination: 'https://spb.45.9.41.151:3000/:path*',
+        destination: 'http://spb.metrologiya.org:3000/:path*',
       },
     ]
   },

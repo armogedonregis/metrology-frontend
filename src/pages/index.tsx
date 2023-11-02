@@ -40,13 +40,13 @@ export default function Home({ company, block, seo }: ICompanys) {
 
 export const getServerSideProps = async (ctx: NextPageContext) => {
 
-  const res = await fetch(`http://62.113.108.16/api/company/${getSubdomain(ctx.req?.headers.host)}`)
+  const res = await fetch(`http://45.9.41.151:4000/api/company/${getSubdomain(ctx.req?.headers.host)}`)
   const company = await res.json()
 
-  const resBlock = await fetch(`http://62.113.108.16/api/note`)
+  const resBlock = await fetch(`http://45.9.41.151:4000/api/note`)
   const block = await resBlock.json()
 
-  const seoJson = await fetch(`http://62.113.108.16/api/seo`)
+  const seoJson = await fetch(`http://45.9.41.151:4000/api/seo`)
   const seo = await seoJson.json()
 
   return {

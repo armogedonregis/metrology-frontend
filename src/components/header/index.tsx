@@ -29,7 +29,7 @@ export const Header = () => {
                         <div className="text-primary cursor-pointer">Москва</div>
                         <div className="absolute w-[200px] z-50 top-8 lg:top-12 hidden bg-gray-200 text-gray-700 pt-1 group-hover:block">
                             <Link href={'http://45.9.41.151:3000'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Москва</Link>
-                            <Link href={'http://spb.45.9.41.151:3000'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Санкт-Петербург</Link>
+                            <Link referrerPolicy="no-referrer" target="_blank" href={'http://spb.45.9.41.151:3000'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Санкт-Петербург</Link>
                         </div>
                     </div>
                     <div className="flex flex-col text-lg lg:text-xl font-sans">

@@ -12,11 +12,14 @@ export default function Home({ company, block, seo }: ICompanys) {
   return (
     <>
       <Head>
+        {seo && 
+        <>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />
         <meta name="keywords" content={seo.keyword} />
+        </>}
       </Head>
       <Hero />
       <Organization />
@@ -25,7 +28,7 @@ export default function Home({ company, block, seo }: ICompanys) {
           {block && <div>{parse(block.top)}</div>}
         </div>
       </Wrapper>
-      <SearchBar company={company} />
+      {company && <SearchBar company={company} />}
       <Wrapper>
         <div className="mb-10">
           {block && <div>{parse(block.bottom)}</div>}
@@ -35,15 +38,15 @@ export default function Home({ company, block, seo }: ICompanys) {
   )
 }
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps = async (ctx: NextPageContext) => {
 
-  const res = await fetch(`http://localhost:4000/api/company/${getSubdomain(ctx.req.headers.host)}`)
+  const res = await fetch(`http://62.113.108.16/api/company/${getSubdomain(ctx.req?.headers.host)}`)
   const company = await res.json()
 
-  const resBlock = await fetch(`http://localhost:4000/api/note`)
+  const resBlock = await fetch(`http://62.113.108.16/api/note`)
   const block = await resBlock.json()
 
-  const seoJson = await fetch(`http://localhost:4000/api/seo`)
+  const seoJson = await fetch(`http://62.113.108.16/api/seo`)
   const seo = await seoJson.json()
 
   return {

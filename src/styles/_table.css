@@ -4,7 +4,7 @@
   }
 
   thead {
-    @apply hidden xl:table-header-group;
+    @apply hidden 2xl:table-header-group;
   }
 
   thead th {
@@ -12,7 +12,7 @@
   }
 
   tr {
-    @apply xl:table-row lg:max-h-20 xl:max-h-full flex lg:flex-col flex-wrap justify-center items-stretch mb-5 border-2 xl:border-none border-solid border-light-bord;
+    @apply xl:table-row flex flex-wrap justify-between items-start md:items-center mb-5 border-2 xl:border-none border-solid border-light-bord;
   }
 
   th {
@@ -20,11 +20,11 @@
   }
 
   th, td {
-    @apply xl:border-2 text-8pxl xl:border-solid xl:border-light-bord;
+    @apply xl:border-2 text-8pxl 2xl:text-lg xl:border-solid xl:border-light-bord;
   }
 
   td {
-    @apply 2xl:py-6 py-3 px-2 text-center;
+    @apply max-w-[30%] md:max-w-[14%] xl:px-2 xl:py-6 text-center md:gap-5 xl:gap-0 ;
   }
   td:first-child {
     @apply font-medium;

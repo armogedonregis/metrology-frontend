@@ -6,9 +6,8 @@ import { ICompanys } from "@/types/company";
 import { NextPageContext } from "next";
 import parse from 'html-react-parser'
 import Head from "next/head";
-import { getSubdomain } from "@/components/header";
 
-export default function Home({ company, block, seo, storeName }: ICompanys) {
+export default function Home({ company, block, seo }: ICompanys) {
 
   return (
     <>

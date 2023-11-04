@@ -5,14 +5,14 @@ import Logo from "public/assets/vector/logo.svg";
 import { HeaderMskData } from "@/data/headerMskData";
 import { useRouter } from "next/router";
 
-export const getSubdomain = (url: any) => {
-    let domain = url;
-    if (url.includes("://")) {
-        domain = url.split('://')[1];
-    }
-    const subdomain = domain.split('.')[0];
-    return subdomain;
-};
+// export const getSubdomain = (url: any) => {
+//     let domain = url;
+//     if (url.includes("://")) {
+//         domain = url.split('://')[1];
+//     }
+//     const subdomain = domain.split('.')[0];
+//     return subdomain;
+// };
 
 export const Header = () => {
     const router = useRouter();

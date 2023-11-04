@@ -8,7 +8,7 @@ import Head from "next/head";
 import { SearchBar } from "@/components/searchBar";
 import { isServer } from "@/utils/server";
 
-export default function Home({ company, block, seo, storeName }: ICompanys) {
+export default function Home({ company, block, seo }: ICompanys) {
 
   return (
     <>

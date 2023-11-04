@@ -23,5 +23,4 @@ export type ICompanys = {
     company: ICompany[];
     block: INote;
     seo: ISeo;
-    storeName: string;
 }

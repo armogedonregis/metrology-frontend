@@ -12,14 +12,6 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/spb/:path*',
-        destination: 'http://spb.metrologiya.org:3000/:path*',
-      },
-    ]
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

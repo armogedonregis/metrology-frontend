@@ -57,6 +57,6 @@ export const getStaticProps = async (ctx: NextPageContext) => {
       block,
       seo,
     },
-    
+    revalidate: 10
   }
 }

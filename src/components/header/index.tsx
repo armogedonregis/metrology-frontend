@@ -17,7 +17,7 @@ export const getSubdomain = (url: any) => {
 
 export const Header = () => {
     const router = useRouter();
-
+    console.log(router.pathname.substring(router.pathname.lastIndexOf('/') + 1))
     return (
         <header className="py-3 lg:py-9">
             <Wrapper>
@@ -39,7 +39,7 @@ export const Header = () => {
                     </div>
                     <div className="flex group relative flex-col text-lg lg:text-xl font-sans">
                         <div className="font-bold">Рейтинги организаций:</div>
-                        <div className="text-primary cursor-pointer">{router.pathname === '/site' ? HeaderMskData.find(x => x.url === router.pathname)?.title : HeaderSpbData.find(x => x.url === router.pathname)?.title}</div>
+                        <div className="text-primary cursor-pointer">{router.pathname === '/site' ? HeaderMskData.find(x => x.url === router.pathname.substring(router.pathname.lastIndexOf('/') + 1))?.title : HeaderSpbData.find(x => x.url === router.pathname.substring(router.pathname.lastIndexOf('/') + 1))?.title}</div>
                         <div className="absolute w-full z-50 top-8 lg:top-14 hidden bg-gray-200 text-gray-700 pt-1 group-hover:block">
                             {router.pathname === '/site' ?
                             HeaderMskData.map(item => {

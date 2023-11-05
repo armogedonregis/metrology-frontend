@@ -2,7 +2,7 @@ export const HeaderMskData = [
     {
         id: 1,
         title: "Рейтинг по поверке счетчиков воды в Москве",
-        url: "/"
+        url: "/site"
     },
     {
         id: 2,

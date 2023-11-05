@@ -17,7 +17,7 @@ export const getSubdomain = (url: any) => {
 
 export const Header = () => {
     const router = useRouter();
-    console.log(router.pathname.substring(router.pathname.lastIndexOf('/') + 1))
+    console.log(HeaderMskData.find(x => x.url === router.pathname)?.title)
     return (
         <header className="py-3 lg:py-9">
             <Wrapper>
@@ -31,7 +31,7 @@ export const Header = () => {
                     </div>
                     <div className="flex group relative flex-col text-lg lg:text-xl font-sans">
                         <div className="font-bold">Регион</div>
-                        <div className="text-primary cursor-pointer">{router.pathname === '/site' ? 'Москва' : 'Санкт-Петербург'}</div>
+                        <div className="text-primary cursor-pointer">{router.pathname.split('/')[1] === 'site' ? 'Москва' : 'Санкт-Петербург'}</div>
                         <div className="absolute w-[200px] z-50 top-8 lg:top-14 hidden bg-gray-200 text-gray-700 pt-1 group-hover:block">
                             <Link href={'http://metrologiya.org'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Москва</Link>
                             <Link href={'https://spb.metrologiya.org'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Санкт-Петербург</Link>
@@ -39,13 +39,13 @@ export const Header = () => {
                     </div>
                     <div className="flex group relative flex-col text-lg lg:text-xl font-sans">
                         <div className="font-bold">Рейтинги организаций:</div>
-                        <div className="text-primary cursor-pointer">{router.pathname === '/site' ? HeaderMskData.find(x => x.url === router.pathname.substring(router.pathname.lastIndexOf('/') + 1))?.title : HeaderSpbData.find(x => x.url === router.pathname.substring(router.pathname.lastIndexOf('/') + 1))?.title}</div>
+                        <div className="text-primary cursor-pointer">{router.pathname.split('/')[1] === 'site' ? HeaderMskData.find(x => x.url === router.pathname)?.title : HeaderSpbData.find(x => x.url === router.pathname)?.title}</div>
                         <div className="absolute w-full z-50 top-8 lg:top-14 hidden bg-gray-200 text-gray-700 pt-1 group-hover:block">
-                            {router.pathname === '/site' ?
+                            {router.pathname.split('/')[1] === 'site' ?
                             HeaderMskData.map(item => {
-                                if (router.pathname !== item.url) {
+                                if (router.pathname !== `${item.url}`) {
                                     return (
-                                        <Link key={item.id} href={item.url} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">{item.title}</Link>
+                                        <Link key={item.id} href={`${item.url}`} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">{item.title}</Link>
                                     )
                                 }
                                 return (
@@ -56,7 +56,7 @@ export const Header = () => {
                             HeaderSpbData.map(item => {
                                 if (router.pathname !== item.url) {
                                     return (
-                                        <Link key={item.id} href={item.url} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">{item.title}</Link>
+                                        <Link key={item.id} href={`${item.url}`} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">{item.title}</Link>
                                     )
                                 }
                                 return (

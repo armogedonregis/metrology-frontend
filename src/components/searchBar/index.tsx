@@ -194,7 +194,7 @@ export const SearchBar = ({ company }: Props) => {
                                         return (
                                             <tr key={item.id}>
                                                 <td>
-                                                    {item.img && <Image src={`http://localhost:4000/static/${item.img.substring(item.img.lastIndexOf('/') + 1)}`} width={60} height={22} alt="" />}
+                                                    {item.img && <Image src={`http://45.9.41.151:4000/static/${item.img.substring(item.img.lastIndexOf('/') + 1)}`} width={60} height={22} alt="" />}
                                                 </td>
                                                 <td>{item.title}</td>
                                                 <td>

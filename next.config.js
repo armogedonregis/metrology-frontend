@@ -17,7 +17,7 @@ const nextConfig = {
       {
         source: "/:path*",
         destination: "/spb/:path*",
-        has: [{ type: "host", value: "spb.example.com" }],
+        has: [{ type: "host", value: "spb.metrologiya.org" }],
       },
       {
         // fallback

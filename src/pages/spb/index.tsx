@@ -14,7 +14,7 @@ export default function Home({ company, block, seo }: ICompanys) {
       <Head>
         {seo && 
         <>
-        <title>{seo.title}</title>
+        <title>Санкт-петербург</title>
         <meta name="description" content={seo.description} />
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />

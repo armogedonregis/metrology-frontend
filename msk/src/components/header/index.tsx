@@ -30,7 +30,7 @@ export const Header = () => {
                     </div>
                     <div className="flex group relative flex-col text-lg lg:text-xl font-sans">
                         <div className="font-bold">Регион</div>
-                        <div className="text-primary cursor-pointer">{router.pathname.split('/')[1] === 'site' ? 'Москва' : 'Санкт-Петербург'}</div>
+                        <div className="text-primary cursor-pointer">Москва</div>
                         <div className="absolute w-[200px] z-50 top-8 lg:top-14 hidden bg-gray-200 text-gray-700 pt-1 group-hover:block">
                             <Link href={'http://metrologiya.org'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Москва</Link>
                             <Link href={'https://spb.metrologiya.org'} className="rounded-t cursor-pointer hover:bg-blue-400 py-2 px-4 block whitespace-no-wrap">Санкт-Петербург</Link>

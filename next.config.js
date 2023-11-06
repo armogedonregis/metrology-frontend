@@ -16,12 +16,12 @@ const nextConfig = {
     return [
       {
         source: "/spb/:path*",
-        destination: "/:path*",
+        destination: "/spb/:path*",
       },
       {
         // fallback
         source: '/site/:path*',
-        destination: '/:path*',
+        destination: '/site/:path*',
       }
     ];
   },

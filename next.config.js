@@ -15,14 +15,9 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/site",
-        destination: "https://metrologiya.org",
+        source: "/:path*",
+        destination: "/site/:path*",
       },
-      {
-        // fallback
-        source: '/spb',
-        destination: 'https://spb.metrologiya.org',
-      }
     ];
   },
   webpack(config) {

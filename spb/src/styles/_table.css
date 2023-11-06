@@ -20,11 +20,11 @@
   }
 
   th, td {
-    @apply xl:border-2 text-8pxl 2xl:text-lg xl:border-solid xl:border-light-bord;
+    @apply xl:border-2 text-8pxl xl:text-sm 2xl:text-xl xl:border-solid xl:border-light-bord;
   }
 
   td {
-    @apply w-[35%] md:w-[14%] lg:w-[initial] xl:px-2 xl:py-6 text-center md:gap-5 xl:gap-0 ;
+    @apply w-[35%] md:w-[14%] xl:px-2 xl:py-6 text-center md:gap-5 xl:gap-0 ;
   }
   td:first-child {
     @apply font-medium;

@@ -6,6 +6,7 @@ import { ICompanys } from "@/types/company";
 import { NextPageContext } from "next";
 import parse from 'html-react-parser'
 import Head from "next/head";
+import { isServer } from "@/utils/server";
 
 export default function Home({ company, block, seo }: ICompanys) {
 
@@ -41,7 +42,7 @@ export default function Home({ company, block, seo }: ICompanys) {
 
 export const getStaticProps = async (ctx: NextPageContext) => {
 
-  const res = await fetch(`http://localhost:4000/api/data/msk/home/output.json`)
+  const res = await fetch(`${isServer}/api/data/msk/home/output.json`)
   const company = await res.json()
 
   const resBlock = await fetch(`http://localhost:4000/api/note`)

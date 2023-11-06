@@ -15,14 +15,13 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/spb/:path*",
-        destination: "https://spb.metrologiya.org/:path*",
-        has: [{ type: "host", value: "spb.metrologiya.org" }],
+        source: "/spb",
+        destination: "https://spb.metrologiya.org",
       },
       {
         // fallback
-        source: '/site/:path*',
-        destination: 'https://metrologiya.org/:path*',
+        source: '/site',
+        destination: 'https://metrologiya.org',
       }
     ];
   },

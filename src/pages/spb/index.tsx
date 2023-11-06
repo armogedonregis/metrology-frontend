@@ -6,20 +6,17 @@ import { ICompanys } from "@/types/company";
 import { NextPageContext } from "next";
 import parse from 'html-react-parser'
 import Head from "next/head";
+import { isServer } from "@/utils/server";
 
-export default function Home({ company, block, seo }: ICompanys) {
+export default function Home({ company, block }: ICompanys) {
 
   return (
     <>
       <Head>
-        {seo && 
-        <>
-        <title>Санкт-петербург</title>
-        <meta name="description" content={seo.description} />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta name="keywords" content={seo.keyword} />
-        </>}
+        <title>Лучшие службы Петербурга по поверке счетчиков воды. Отзывы клиентов и цены</title>
+        <meta name="description" content={'Лучшие службы Петербурга по поверке счетчиков воды. Отзывы клиентов и цены'} />
+        <meta property="og:title" content={'Лучшие службы Петербурга по поверке счетчиков воды. Отзывы клиентов и цены'} />
+        <meta property="og:description" content={'Лучшие службы Петербурга по поверке счетчиков воды. Отзывы клиентов и цены'} />
       </Head>
       <Hero />
       <Organization />
@@ -41,20 +38,16 @@ export default function Home({ company, block, seo }: ICompanys) {
 
 export const getStaticProps = async (ctx: NextPageContext) => {
 
-  const res = await fetch(`http://localhost:4000/api/company/msk/home`)
+  const res = await fetch(`${isServer}/api/company/spb/home`)
   const company = await res.json()
 
-  const resBlock = await fetch(`http://localhost:4000/api/note`)
+  const resBlock = await fetch(`${isServer}/api/note`)
   const block = await resBlock.json()
-
-  const seoJson = await fetch(`http://localhost:4000/api/seo`)
-  const seo = await seoJson.json()
 
   return {
     props: {
       company,
       block,
-      seo,
     },
     revalidate: 10
   }

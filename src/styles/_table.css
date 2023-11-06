@@ -24,7 +24,7 @@
   }
 
   td {
-    @apply max-w-[30%] md:max-w-[14%] xl:px-2 xl:py-6 text-center md:gap-5 xl:gap-0 ;
+    @apply w-[35%] md:w-[14%] lg:w-[initial] xl:px-2 xl:py-6 text-center md:gap-5 xl:gap-0 ;
   }
   td:first-child {
     @apply font-medium;

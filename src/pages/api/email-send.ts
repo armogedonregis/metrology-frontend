@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     case "POST":
       const { name, phone, comment } = req.body;
       const transporter = nodemailer.createTransport({
-        host: "smtp.mail.ru",
+        host: process.env.SPTP_HOST,
         port: 465,
         secure: true,
         auth: {
@@ -29,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       await new Promise((resolve, reject) => {
         transporter.sendMail(mailData, (err, info) => {
+          console.log(err, info)
           if (err) {
             reject();
             return { status: 500 };

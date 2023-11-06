@@ -8,19 +8,15 @@ import Head from "next/head";
 import { SearchBar } from "@/components/searchBar";
 import { isServer } from "@/utils/server";
 
-export default function Home({ company, block, seo }: ICompanys) {
+export default function Home({ company, block }: ICompanys) {
 
   return (
     <>
       <Head>
-        {seo && 
-        <>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta name="keywords" content={seo.keyword} />
-        </>}
+        <title>Рейтинг компаний Москвы по замене счетчиков воды. Отзывы клиентов и цены</title>
+        <meta name="description" content="Рейтинг компаний Москвы по замене счетчиков воды. Отзывы клиентов и цены" />
+        <meta property="og:title" content="Рейтинг компаний Москвы по замене счетчиков воды. Отзывы клиентов и цены" />
+        <meta property="og:description" content="Рейтинг компаний Москвы по замене счетчиков воды. Отзывы клиентов и цены" />
       </Head>
       <Hero />
       <Organization />

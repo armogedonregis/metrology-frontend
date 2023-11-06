@@ -8,19 +8,15 @@ import Head from "next/head";
 import { SearchBar } from "@/components/searchBar";
 import { isServer } from "@/utils/server";
 
-export default function Home({ company, block, seo }: ICompanys) {
+export default function Home({ company, block }: ICompanys) {
 
   return (
     <>
       <Head>
-        {seo && 
-        <>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta name="keywords" content={seo.keyword} />
-        </>}
+        <title>ТОП московских служб по установке счетчиков тепла по отзывам бывших клиентов</title>
+        <meta name="description" content="ТОП московских служб по установке счетчиков тепла по отзывам бывших клиентов" />
+        <meta property="og:title" content="ТОП московских служб по установке счетчиков тепла по отзывам бывших клиентов" />
+        <meta property="og:description" content="ТОП московских служб по установке счетчиков тепла по отзывам бывших клиентов" />
       </Head>
       <Hero />
       <Organization />
@@ -48,14 +44,10 @@ export const getStaticProps = async (ctx: NextPageContext) => {
   const resBlock = await fetch(`${isServer}/api/note`)
   const block = await resBlock.json()
 
-  const seoJson = await fetch(`${isServer}/api/seo`)
-  const seo = await seoJson.json()
-
   return {
     props: {
       company,
       block,
-      seo,
     },
     revalidate: 10
   }

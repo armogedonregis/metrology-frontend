@@ -5,18 +5,36 @@ import MapIcon from "public/assets/vector/map_icon.svg";
 import LogoSm from "public/assets/vector/logo_small.svg";
 import StarIcon from "public/assets/vector/star_icon.svg";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearch } from "@/hooks/useSearch";
 import Modal from 'react-responsive-modal'
 import { useModal } from "@/hooks/useModal";
 import Select from "react-select";
+import format from "date-fns/format";
+import addDays from "date-fns/addDays";
+import { Open_Sans } from "next/font/google";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 
 type Props = {
     company: ICompany[];
 }
 
+const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-sans' });
+
+const options = [
+    { value: 'Поверка счетчиков воды', label: 'Поверка счетчиков воды' },
+    { value: 'Замена счетчиков воды', label: 'Замена счетчиков воды' },
+    { value: 'Установка счетчиков воды', label: 'Установка счетчиков воды' },
+    { value: 'Поверка счетчиков тепла', label: 'Поверка счетчиков тепла' },
+    { value: 'Замена счетчиков тепла', label: 'Замена счетчиков тепла' },
+    { value: 'Установка счетчиков тепла', label: 'Установка счетчиков тепла' }
+]
+
 export const SearchBar = ({ company }: Props) => {
+
+    const router = useRouter()
 
     const [arrState, setArrState] = useState<ICompany[]>(company);
 
@@ -52,24 +70,64 @@ export const SearchBar = ({ company }: Props) => {
     };
 
     const [value, setValue] = useState<any>();
+    const [dateValue, setDateValue] = useState<any>();
 
-    const options = [
-        { value: 'Поверка счетчиков воды', label: 'Поверка счетчиков воды' },
-        { value: 'Замена счетчиков воды', label: 'Замена счетчиков воды' },
-        { value: 'Установка счетчиков воды', label: 'Установка счетчиков воды' },
-        { value: 'Поверка счетчиков тепла', label: 'Поверка счетчиков тепла' },
-        { value: 'Замена счетчиков тепла', label: 'Замена счетчиков тепла' },
-        { value: 'Установка счетчиков тепла', label: 'Установка счетчиков тепла' }
-    ]
+    const dateForMount: string[] = [];
+
+
+    for (let i = 0; i < 30; i++) {
+        const date = new Date();
+        const datePlus = addDays(date, i);
+        dateForMount.push(format(datePlus, 'dd.LL.yyyy'))
+    }
+
+
+    const optionsDate = useMemo(() =>
+        dateForMount && dateForMount.map(item => {
+            return {
+                value: item,
+                label: item
+            }
+        }),
+        [dateForMount]
+    );
+
+    const timeForDay: string[] = [];
+
+
+    for (let i = 0; i < 12; i++) {
+        const timeInterval = `${9 + i}:00 - ${10 + i}: 00`;
+        timeForDay.push(timeInterval)
+    }
+
+    const optionsTime = useMemo(() =>
+        timeForDay && timeForDay.map(item => {
+            return {
+                value: item,
+                label: item
+            }
+        })
+        ,
+        [timeForDay])
+
+    const sendEmail = async () => {
+        await axios.post("/api/email-send", {
+            name: '123', phone: '123', comment: '123'
+        })
+            .then(() => {
+                onCloseModal()
+            })
+
+    };
 
     return (
         <>
 
             <Modal open={open} onClose={onCloseModal} center>
                 {open &&
-                    <div className="p-5">
-                        <h3 className="text-2xl border-b-2 border-b-slate-500 pb-2">Оставить заявку в компанию {modalChoise?.title}</h3>
-                        <form className="flex font-montserrat flex-col w-full gap-5 mt-10">
+                    <div className={`p-5 ${openSans.variable}`}>
+                        <h3 className="text-2xl font-sans border-b-2 border-b-slate-500 pb-2">Оставить заявку в компанию {modalChoise?.title}</h3>
+                        <form className="flex font-sans flex-col w-full gap-5 mt-10">
                             <div className="flex flex-col gap-2">
                                 <label className="text-left">Услуга:<span className="text-red-500">*</span></label>
                                 <Select
@@ -85,29 +143,29 @@ export const SearchBar = ({ company }: Props) => {
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="text-left">Удобная дата:</label>
-                                <Select
+                                {dateForMount.length > 0 && <Select
                                     id="long-value-select"
                                     instanceId="long-value-select"
-                                    defaultValue={options[0]}
-                                    options={options}
-                                    value={value}
-                                    onChange={(val) => setValue(val)}
+                                    defaultValue={optionsDate[0]}
+                                    options={optionsDate}
+                                    value={dateValue}
+                                    onChange={(val) => setDateValue(val)}
                                     isMulti={false}
                                     isSearchable={false}
-                                />
+                                />}
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="text-left">Удобное время:</label>
-                                <Select
+                                {timeForDay.length > 0 && <Select
                                     id="long-value-select"
                                     instanceId="long-value-select"
-                                    defaultValue={options[0]}
-                                    options={options}
+                                    defaultValue={optionsTime[0]}
+                                    options={optionsTime}
                                     value={value}
                                     onChange={(val) => setValue(val)}
                                     isMulti={false}
                                     isSearchable={false}
-                                />
+                                />}
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="text-left">Ваше имя:<span className="text-red-500">*</span></label>
@@ -122,7 +180,7 @@ export const SearchBar = ({ company }: Props) => {
                                 <textarea className="h-[120px] resize-none bg-transparent px-3 focus:outline-none border-b-2 border-b-slate-500" />
                             </div>
                             <div className="flex justify-center">
-                                <button onClick={onCloseModal} className="h-10 lg:h-16 text-white active:opacity-50 transition-all duration-150 uppercase px-5 lg:px-12 flex items-center text-base lg:text-lg bg-primary-btn font-montserrat" type="submit">Отправить</button>
+                                <button onClick={sendEmail} className="h-10 lg:h-16 text-white active:opacity-50 transition-all duration-150 uppercase px-5 lg:px-12 flex items-center text-base lg:text-lg bg-primary-btn font-montserrat" type="submit">Отправить</button>
                             </div>
                         </form>
                     </div>
@@ -136,12 +194,12 @@ export const SearchBar = ({ company }: Props) => {
                         <div className="flex md:flex-row flex-col-reverse gap-y-5 md:gap-y-0 md:justify-between">
                             <div className="relative group">
                                 <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2" />
-                                <div className="group-hover:hidden absolute right-5 top-1/2 -translate-y-1/2 group cursor-pointer flex items-center gap-2">
+                                <div className={`group-hover:hidden ${search.length > 0 && 'hidden'} absolute right-5 top-1/2 -translate-y-1/2 group cursor-pointer flex items-center gap-2`}>
                                     <MapIcon />
-                                    <span className="text-sm md:text-base text-dark-gray">Москва</span>
+                                    <span className="text-xs md:text-base text-dark-gray">{router.pathname.split('/')[1] === 'site' ? 'Москва' : 'Санкт-Петербург'}</span>
                                 </div>
-                                <div className="group-hover:hidden bg-dark-gray h-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px]"></div>
-                                <input value={search} onChange={(e) => handleSearch(e.target.value)} placeholder="Поиск" className="xl:h-16 h-10 w-full text-base xl:w-[300px] rounded-lg text-dark-gray placeholder:dark-gray px-10 focus:outline-none" />
+                                <div className={`group-hover:hidden ${search.length > 0 && 'hidden'} bg-dark-gray h-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px]`}></div>
+                                <input value={search} onChange={(e) => handleSearch(e.target.value)} placeholder="Поиск" className="xl:h-16 h-10 w-full text-base lg:w-[300px] xl:w-[400px] rounded-lg text-dark-gray placeholder:dark-gray px-10 focus:outline-none" />
                             </div>
                             <div className="flex gap-2 items-center">
                                 <LogoSm />
@@ -195,6 +253,7 @@ export const SearchBar = ({ company }: Props) => {
                                             <tr key={item.id}>
                                                 <td>
                                                     {item.img && <Image src={`https://metrologiya.org/api/static/${item.img.substring(item.img.lastIndexOf('/') + 1)}`} width={60} height={22} alt="" />}
+                                                    {/* {item.img && <Image src={`http://localhost:4000/api/static/${item.img.substring(item.img.lastIndexOf('/') + 1)}`} width={60} height={22} alt="" />} */}
                                                 </td>
                                                 <td>{item.title}</td>
                                                 <td>

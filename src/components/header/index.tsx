@@ -17,7 +17,6 @@ export const getSubdomain = (url: any) => {
 
 export const Header = () => {
     const router = useRouter();
-    console.log(HeaderMskData.find(x => x.url === router.pathname)?.title)
     return (
         <header className="py-3 lg:py-9">
             <Wrapper>

@@ -18,10 +18,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           pass: process.env.SMTP_PASS,
         },
       });
-//`${email}`, 
+      
       const mailData = {
         from: process.env.SMTP_NAME,
-        to: [`${process.env.SMTP_NAME}`],
+        to: [`${email}`, `${process.env.SMTP_NAME}`],
         subject: `Заявка с сайта ${process.env.DOMAIN_NAME}`,
         html: `
             <h1>Услуга: ${service}</h1>
@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             <p>Телефон: ${phoneNumber}</p>
             <p>Дата: ${date}</p>
             <p>Время: ${time}</p>
-            <p>Телефон: ${comment}</p>
+            <p>Комментарий: ${comment}</p>
           `,
       };
 

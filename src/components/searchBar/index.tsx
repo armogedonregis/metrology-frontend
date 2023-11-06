@@ -155,7 +155,6 @@ export const SearchBar = ({ company }: Props) => {
             email: modalChoise?.email.split('mailto:').join('')
         })
             .then((res) => {
-                console.log(res)
                 reset()
                 onCloseModal()
             })

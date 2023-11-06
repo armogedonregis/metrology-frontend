@@ -15,9 +15,14 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/:path*",
+        source: "/site/:path*",
         destination: "/site/:path*",
       },
+      {
+        // fallback
+        source: '/spb/:path*',
+        destination: '/spb/:path*',
+      }
     ];
   },
   webpack(config) {

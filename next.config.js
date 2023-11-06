@@ -15,14 +15,25 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/site/:path*",
-        destination: "/site/:path*",
+        has: [
+          {
+            type: "host",
+            value: "metrologiya.org",
+          },
+        ],
+        source: "/",
+        destination: "/site/:site",
       },
       {
-        // fallback
-        source: '/spb/:path*',
-        destination: '/spb/:path*',
-      }
+        has: [
+          {
+            type: "host",
+            value: "spb.metrologiya.org",
+          },
+        ],
+        source: "/spb",
+        destination: "/spb/:spb",
+      },
     ];
   },
   webpack(config) {

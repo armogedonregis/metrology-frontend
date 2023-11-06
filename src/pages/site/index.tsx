@@ -22,7 +22,7 @@ export default function Home({ company, block, seo }: ICompanys) {
         </>}
       </Head>
       <Hero />
-      <Organization />
+      <Organization title="Рейтинг организаций по поверке счетчиков воды в Москве – отзывы и цены" />
       <Wrapper>
         <div className="mt-10">
           {block && <div>{parse(block.top)}</div>}

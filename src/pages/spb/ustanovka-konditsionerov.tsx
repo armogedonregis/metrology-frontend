@@ -19,7 +19,7 @@ export default function Home({ company, block }: ICompanys) {
         <meta property="og:description" content={'Рейтинг компаний по установке кондиционеров в СПб — цены и отзывы клиентов'} />
       </Head>
       <Hero />
-      <Organization />
+      <Organization title="ТОП-20 служб по установке кондиционеров в СПб" />
       <Wrapper>
         <div className="mt-10">
           {block && <div>{parse(block.top)}</div>}

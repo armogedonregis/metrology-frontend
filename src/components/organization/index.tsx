@@ -2,11 +2,15 @@ import { Wrapper } from "../layout/wrapper";
 import GraphicIcon from "public/assets/vector/graphic_icon.svg";
 import GirlIcon from "public/assets/vector/girl_icon.svg";
 
-export const Organization = () => {
+type Props = {
+    title: string;
+}
+
+export const Organization = ({ title }: Props) => {
     return (
         <section className="mt-6 lg:mt-24">
             <Wrapper>
-                <h2 className="font-semibolb font-sans text-xl lg:text-3xl text-dark">Рейтинг организаций по поверке счетчиков воды в Москве – отзывы и цены</h2>
+                <h2 className="font-semibolb font-sans text-xl lg:text-3xl text-dark">{title}</h2>
             </Wrapper>
             <div className="lg:py-6 py-4 mt-6 lg:mt-12 bg-light">
                 <Wrapper>

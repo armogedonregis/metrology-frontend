@@ -19,7 +19,7 @@ export default function Home({ company, block }: ICompanys) {
         <meta property="og:description" content={'Рейтинг компаний по замене счетчиков тепла в Санкт-Петербурге. Отзывы, цены'} />
       </Head>
       <Hero />
-      <Organization />
+      <Organization title="Компании по замене теплосчетчиков в Санкт-Петербурге — отзывы и цены" />
       <Wrapper>
         <div className="mt-10">
           {block && <div>{parse(block.top)}</div>}

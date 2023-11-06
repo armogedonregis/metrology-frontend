@@ -19,7 +19,7 @@ export default function Home({ company, block }: ICompanys) {
         <meta property="og:description" content="Лучшие компании Москвы по поверке счетчиков тепла. Отзывы клиентов и цены" />
       </Head>
       <Hero />
-      <Organization />
+      <Organization title="Компании по поверке теплосчетчиков в Москве — отзывы клиентов и цены на услуги" />
       <Wrapper>
         <div className="mt-10">
           {block && <div>{parse(block.top)}</div>}

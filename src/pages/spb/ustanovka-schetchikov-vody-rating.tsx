@@ -19,7 +19,7 @@ export default function Home({ company, block }: ICompanys) {
         <meta property="og:description" content={'Список лучших служб по установке водосчетчиков СПб. Отзывы клиентов и цены'} />
       </Head>
       <Hero />
-      <Organization />
+      <Organization title="Рейтинг компаний по установке счетчиков воды в Санкт-Петербурге — цены и отзывы клиентов" />
       <Wrapper>
         <div className="mt-10">
           {block && <div>{parse(block.top)}</div>}

@@ -16,13 +16,13 @@ const nextConfig = {
     return [
       {
         source: "/spb/:path*",
-        destination: "/:path*",
+        destination: "https://spb.metrologiya.org/:path*",
         has: [{ type: "host", value: "spb.metrologiya.org" }],
       },
       {
         // fallback
         source: '/site/:path*',
-        destination: '/site/:path*',
+        destination: 'https://metrologiya.org/:path*',
       }
     ];
   },

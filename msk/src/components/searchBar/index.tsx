@@ -251,7 +251,7 @@ export const SearchBar = ({ company }: Props) => {
                                 <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2" />
                                 <div className={`group-hover:hidden ${search.length > 0 && 'hidden'} absolute right-5 top-1/2 -translate-y-1/2 group cursor-pointer flex items-center gap-2`}>
                                     <MapIcon />
-                                    <span className="text-xs md:text-base text-dark-gray">{router.pathname.split('/')[1] === 'site' ? 'Москва' : 'Санкт-Петербург'}</span>
+                                    <span className="text-xs md:text-base text-dark-gray">Москва</span>
                                 </div>
                                 <div className={`group-hover:hidden ${search.length > 0 && 'hidden'} bg-dark-gray h-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px]`}></div>
                                 <input value={search} onChange={(e) => handleSearch(e.target.value)} placeholder="Поиск" className="xl:h-16 h-10 w-full text-base lg:w-[300px] xl:w-[400px] rounded-lg text-dark-gray placeholder:dark-gray px-10 focus:outline-none" />

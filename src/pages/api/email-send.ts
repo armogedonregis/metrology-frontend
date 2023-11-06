@@ -5,7 +5,10 @@ import nodemailer from "nodemailer";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "POST":
-      const { name, phone, comment } = req.body;
+      const { service, date, time,
+        firstName,
+        phoneNumber,
+        comment, email } = req.body;
       const transporter = nodemailer.createTransport({
         host: process.env.SPTP_HOST,
         port: 465,
@@ -15,14 +18,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           pass: process.env.SMTP_PASS,
         },
       });
-
+//`${email}`, 
       const mailData = {
         from: process.env.SMTP_NAME,
-        to: [`${process.env.SMTP_NAME}`, `${process.env.EMAIL_RECIPIENT}`],
+        to: [`${process.env.SMTP_NAME}`],
         subject: `Заявка с сайта ${process.env.DOMAIN_NAME}`,
         html: `
-            <h1>${name}</h1>
-            <p>Телефон: ${phone}</p>
+            <h1>Услуга: ${service}</h1>
+            <h1>Имя: ${firstName}</h1>
+            <p>Телефон: ${phoneNumber}</p>
+            <p>Дата: ${date}</p>
+            <p>Время: ${time}</p>
             <p>Телефон: ${comment}</p>
           `,
       };

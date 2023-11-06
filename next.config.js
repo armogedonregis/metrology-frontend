@@ -12,19 +12,19 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/spb/:path*",
-        destination: "/:path*",
-      },
-      {
-        // fallback
-        source: '/site/:path*',
-        destination: '/:path*',
-      }
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/spb/:path*",
+  //       destination: "/:path*",
+  //     },
+  //     {
+  //       // fallback
+  //       source: '/site/:path*',
+  //       destination: '/:path*',
+  //     }
+  //   ];
+  // },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

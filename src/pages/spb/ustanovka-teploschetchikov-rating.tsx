@@ -38,7 +38,7 @@ export default function Home({ company, block }: ICompanys) {
 
 export const getStaticProps = async (ctx: NextPageContext) => {
 
-  const res = await fetch(`${isServer}/api/company/spb/ustanovkaTepl`)
+  const res = await fetch(`${isServer}/api/data/spb/ustanovka-teploschetchikov-rating/output.json`)
   const company = await res.json()
 
   const resBlock = await fetch(`${isServer}/api/note`)

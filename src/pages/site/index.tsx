@@ -41,7 +41,7 @@ export default function Home({ company, block, seo }: ICompanys) {
 
 export const getStaticProps = async (ctx: NextPageContext) => {
 
-  const res = await fetch(`http://localhost:4000/api/company/msk/home`)
+  const res = await fetch(`http://localhost:4000/api/data/msk/home/output.json`)
   const company = await res.json()
 
   const resBlock = await fetch(`http://localhost:4000/api/note`)

@@ -19,9 +19,14 @@ const nextConfig = {
         destination: "/site/:path*",
       },
       {
-        // fallback
-        source: '/spb/:path*',
-        destination: '/spb/:path*',
+        has: [
+          {
+            type: 'host',
+            value: '(?<series>.+)\\.localhost',
+          }
+        ],
+        source: '/:spb/spb/:path*',
+        destination: '/:spb/spb/:path*',
       }
     ];
   },

@@ -12,6 +12,19 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/site",
+        destination: "https://metrologiya.org",
+      },
+      {
+        // fallback
+        source: '/spb',
+        destination: 'https://spb.metrologiya.org',
+      }
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
